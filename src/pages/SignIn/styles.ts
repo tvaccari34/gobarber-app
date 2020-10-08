@@ -13,11 +13,22 @@ export const Content = styled.div`
     display: flex;
     flex-direction: column;
     align-items: center;
+    justify-content: center;
 
     place-content: center;
 
     width: 100%;
     max-width: 700px;
+
+
+`;
+
+export const AnimationContainer = styled.div`
+
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
 
     form {
         margin: 80px 0;
@@ -60,6 +71,7 @@ export const Content = styled.div`
             color: ${shade(0.2, '#FF9000')}
         }
     }
+
 `;
 
 export const Background = styled.div`
