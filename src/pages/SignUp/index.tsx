@@ -7,7 +7,7 @@ import * as Yup from 'yup';
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
-import { Container, Content, Background } from './styles';
+import { Container, Content, Background, AnimationContainer } from './styles';
 
 import Input from '../../components/Input';
 import Button from '../../components/Button';
@@ -44,23 +44,25 @@ const SignUP: React.FC = () => {
         <Container>
         <Background />
         <Content>
-            <img src={logoImg} alt="GoBarber" />
+            <AnimationContainer>
+                <img src={logoImg} alt="GoBarber" />
 
-            <Form ref={formRef} onSubmit={handleSubmit}>
-                <h1>Create User</h1>
-                <Input name="name" icon={FiUser} placeholder="User Name" />
+                <Form ref={formRef} onSubmit={handleSubmit}>
+                    <h1>Create User</h1>
+                    <Input name="name" icon={FiUser} placeholder="User Name" />
 
-                <Input name="email" icon={FiMail} placeholder="E-mail" />
+                    <Input name="email" icon={FiMail} placeholder="E-mail" />
 
-                <Input name="password" icon={FiLock} type="password" placeholder="Password" />
+                    <Input name="password" icon={FiLock} type="password" placeholder="Password" />
 
-                <Button type="submit">Create</Button>
-            </Form>
+                    <Button type="submit">Create</Button>
+                </Form>
 
-            <Link to="/">
-                <FiArrowLeft />
-                Back
-            </Link>
+                <Link to="/">
+                    <FiArrowLeft />
+                    Back
+                </Link>
+            </AnimationContainer>
         </Content>
 
     </Container>
