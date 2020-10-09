@@ -1,9 +1,14 @@
 import React, { useCallback, useRef } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useHistory } from 'react-router-dom';
 import { FiArrowLeft, FiMail, FiUser , FiLock } from 'react-icons/fi';
 import { FormHandles } from '@unform/core';
 import { Form } from '@unform/web';
 import * as Yup from 'yup';
+
+import api from '../../services/api';
+
+import { useToast } from '../../hooks/toast';
+
 import getValidationErrors from '../../utils/getValidationErrors';
 
 import logoImg from '../../assets/logo.svg';
@@ -12,11 +17,21 @@ import { Container, Content, Background, AnimationContainer } from './styles';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 
+interface SignUpFormData {
+    name: string;
+    email: string;
+    password: string;
+}
+
 const SignUP: React.FC = () => {
 
     const formRef = useRef<FormHandles>(null);
 
-    const handleSubmit = useCallback( async (data: object) => {
+    const { addToast } = useToast();
+    const history = useHistory();
+
+
+    const handleSubmit = useCallback( async (data: SignUpFormData) => {
 
         try {
 
@@ -31,13 +46,33 @@ const SignUP: React.FC = () => {
             await schema.validate(data, {
                 abortEarly: false,
             });
-        } catch (error) {
-            console.log(error);
-            const errors = getValidationErrors(error);
 
-            formRef.current?.setErrors(errors);
+            await api.post('/users', data);
+
+            history.push('/');
+
+            addToast({
+                type: 'success',
+                title: 'You have been registered.',
+                description: 'You are ready to login on to GoBarber.',
+            });
+
+        } catch (error) {
+            if (error instanceof Yup.ValidationError) {
+                const errors = getValidationErrors(error);
+
+                formRef.current?.setErrors(errors);
+
+                return;
+            }
+
+            addToast({
+                type: 'error',
+                title: 'Registration Error',
+                description: 'An error has been occured. Please check your details and try again.'
+            });
         }
-    }, []);
+    }, [addToast, history]);
 
     return (
 
