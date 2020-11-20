@@ -1,21 +1,40 @@
 import React, {useCallback} from 'react';
 import { useAuth } from '../../hooks/auth';
+import { Container, Header, HeaderContent, Profile } from './styles';
+import logoImg from '../../assets/logo.svg';
+import { FiPower } from 'react-icons/fi';
 
 const Dashboard: React.FC = () => {
 
-    const { signOut } = useAuth();
+    const { signOut, user } = useAuth();
 
-    const handleClick = useCallback( () => {
+    console.log(user);
 
-        signOut();
+    // const handleClick = useCallback( () => {
 
-    }, [signOut]);
+    //     signOut();
+
+    // }, [signOut]);
 
     return (
-        <>
-            <h1>Dashboard</h1>
-            <button onClick={handleClick}>SignOut</button>
-        </>
+        <Container>
+            <Header>
+                <HeaderContent>
+                    <img src={logoImg} alt="GoBarber"/>
+
+                    <Profile>
+                        <img src={user.avatar_url} alt={user.name}/>
+                        <div>
+                            <span>Welcome</span>
+                            <strong>{user.name}</strong>
+                        </div>
+                    </Profile>
+                    <button type="button" onClick={signOut}>
+                        <FiPower />
+                    </button>
+                </HeaderContent>
+            </Header>
+        </Container>
     );
 }
 
