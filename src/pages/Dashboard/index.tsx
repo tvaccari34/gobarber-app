@@ -1,4 +1,4 @@
-import React, {useCallback} from 'react';
+import React, {useCallback, useState} from 'react';
 import { useAuth } from '../../hooks/auth';
 import {    Container,
             Header,
@@ -7,6 +7,8 @@ import {    Container,
             Content,
             Schedule,
             NextAppoitment,
+            Section,
+            Appointment,
             Calendar
         } from './styles';
 import logoImg from '../../assets/logo.svg';
@@ -14,15 +16,9 @@ import { FiClock, FiPower } from 'react-icons/fi';
 
 const Dashboard: React.FC = () => {
 
+    const [selectedDate, setselectedDate] = useState(new Date());
+
     const { signOut, user } = useAuth();
-
-    console.log(user);
-
-    // const handleClick = useCallback( () => {
-
-    //     signOut();
-
-    // }, [signOut]);
 
     return (
         <Container>
@@ -64,6 +60,62 @@ const Dashboard: React.FC = () => {
                         </div>
 
                     </NextAppoitment>
+
+                    <Section>
+                        <strong>Morning</strong>
+
+                        <Appointment>
+                            <span>
+                                <FiClock />
+                                    09:00
+                            </span>
+
+                            <div>
+                                <img src="https://storage.googleapis.com/shawee-production.appspot.com/shawee/profilepictures/4dc708f2-87d6-4c96-b5fd-76208161a5e7.JPG" alt="Tiago"/>
+                                <strong>Tiago Vaccari</strong>
+                            </div>
+                        </Appointment>
+
+                        <Appointment>
+                            <span>
+                                <FiClock />
+                                    10:00
+                            </span>
+
+                            <div>
+                                <img src="https://storage.googleapis.com/shawee-production.appspot.com/shawee/profilepictures/4dc708f2-87d6-4c96-b5fd-76208161a5e7.JPG" alt="Tiago"/>
+                                <strong>Tiago Vaccari</strong>
+                            </div>
+                        </Appointment>
+                    </Section>
+
+                    <Section>
+                        <strong>Afternoon</strong>
+
+                        <Appointment>
+                            <span>
+                                <FiClock />
+                                    13:00
+                            </span>
+
+                            <div>
+                                <img src="https://storage.googleapis.com/shawee-production.appspot.com/shawee/profilepictures/4dc708f2-87d6-4c96-b5fd-76208161a5e7.JPG" alt="Tiago"/>
+                                <strong>Tiago Vaccari</strong>
+                            </div>
+                        </Appointment>
+
+                        <Appointment>
+                            <span>
+                                <FiClock />
+                                    15:00
+                            </span>
+
+                            <div>
+                                <img src="https://storage.googleapis.com/shawee-production.appspot.com/shawee/profilepictures/4dc708f2-87d6-4c96-b5fd-76208161a5e7.JPG" alt="Tiago"/>
+                                <strong>Tiago Vaccari</strong>
+                            </div>
+                        </Appointment>
+                    </Section>
                 </Schedule>
                 <Calendar />
             </Content>
