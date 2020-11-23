@@ -1,15 +1,14 @@
-import React, { ButtonHTMLAttributes } from 'react';
-import { bool, boolean } from 'yup';
+import React, { ButtonHTMLAttributes } from "react";
 
-import { Container } from './styles';
+import { Container } from "./styles";
 
 type buttonProps = ButtonHTMLAttributes<HTMLButtonElement> & {
     loading?: boolean;
 };
 
-const Button: React.FC<buttonProps> = ({children, loading, ...rest}) => (
+const Button: React.FC<buttonProps> = ({ children, loading, ...rest }) => (
     <Container type="button" {...rest}>
-        {loading ? 'Enviando' : children}
+        {loading ? "Enviando" : children}
     </Container>
 );
 
