@@ -41,6 +41,11 @@ export const Profile = styled.div`
         width: 56px;
         height: 56px;
         border-radius: 50px;
+        transition: 0.2s;
+    }
+
+    img:hover {
+        opacity: 0.8;
     }
 
     div {
@@ -57,6 +62,8 @@ export const Profile = styled.div`
             color: #ff9000;
         }
     }
+
+
 `;
 
 export const Content = styled.main`
