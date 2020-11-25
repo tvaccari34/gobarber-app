@@ -1,5 +1,4 @@
 import React, { createContext, useCallback, useState, useContext } from "react";
-//import { FiUsers } from 'react-icons/fi';
 import api from "../services/api";
 
 interface SignInCredentials {
